@@ -15,18 +15,8 @@
     <a-scene>
       <a-entity position="0 0 0" rotation="0 0 0">
       <a-entity><a-camera look-controls wasd-controls-enabled mouse-cursor></a-camera></a-entity>
-      <a-entity laser-controls="hand: right"></a-entity>
+     <!--  <a-entity laser-controls="hand: right"></a-entity> -->
     </a-entity>
-
-      <!-- <a-entity position="8 2 8" rotation="0 0 0">
-
-       <a-entity cursor="fuse: true; fuseTimeout: 500"
-            position="0 0 -2"
-            geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.027"
-            material="color: black; shader: flat"
-        </a-entity>
-
-      </a-entity> -->
 
 
 
@@ -36,7 +26,7 @@
 
   <!-- BEGIN INPUTS/KEYBOARD -->
       <a-keyboard physical-keyboard = "true"></a-keyboard>
-      <a-input position="-0.7 1 -2.5" id = "hi" placeholder="Enter numbers" color="black" width="1"></a-input>
+      <a-input position="-0.7 1 -2.5" id = "keyboard" placeholder="Enter numbers" color="black" width="1"></a-input>
       <!-- END INPUTS/KEYBOARD -->
 
   </a-scene>
@@ -46,17 +36,11 @@
     var data;
     let keyboard = document.querySelector("a-keyboard");
     keyboard.addEventListener('diddismiss', (e)=>{
-      let input = document.getElementById('hi');
-      console.log(input.value.split(""))
+      let input = document.getElementById('keyboard');
       var data = input.value.split("");
-       var alpha = 0.6
+      var alpha = 0.6
 
-    // fake data
-    // data = [ 19, 80, 30, 15, 55, 35, 40,
-    //             45, 50, 70, 109, 35, 78,
-    //            87, 76, 22, 2, 33, 44, 59, 200]
-
-     var animals = [ 'Buzz', 'Buzz', 'Buzz', 'Buzz', 'Buzz', 'Buzz', 'Buzz', 'Buzz', 'Buzz', 'Buzz', 'Buzz', 'Buzz', 'Buzz', 'Buzz', 'Buzz', 'Buzz']
+     var labels = [ 'Buzz', 'Buzz', 'Buzz', 'Buzz', 'Buzz', 'Buzz', 'Buzz', 'Buzz', 'Buzz', 'Buzz', 'Buzz', 'Buzz', 'Buzz', 'Buzz', 'Buzz', 'Buzz']
 
     // we scale the height of our bars using d3's linear scale
     var hscale = d3.scale.linear()
@@ -96,7 +80,7 @@
       this.hovering = true;
       d3.select(this).transition().duration(10)
       .attr({
-        metalness: 0.8,
+        metalness: .8,
         opacity: .9
       })
        d3.select(this).select("a-text")
@@ -105,7 +89,7 @@
             'align':'center',
             'position':'0 '+ (hscale(d)/2+.5) + ' 0',
             'scale':'1 1 1',
-            'value': animals[i]+', '+d
+            'value': labels[i]+', '+d
       })
     })
     .on("mouseleave", function(d,i) {
@@ -118,11 +102,7 @@
       })
        d3.select(this).select("a-text")
       .attr({
-            'color':'blue',
-            'align':'center',
-            'position':'0 '+ (hscale(d)/2+.5) + ' 0',
-            'scale':'.01 .01 .01',
-            'value': d
+            'value': ''
       })
     })
     })
@@ -131,11 +111,11 @@
 
   <script>
 
-    $(".bar").each(function() {
-        this.components.material.material.alphaTest = 0.5;
-      this.components.material.material.depthWrite = false;
-      this.components.material.material.needsUpdate = true;;
-    });
+    // $(".bar").each(function() {
+    //   this.components.material.material.alphaTest = 0.5;
+    //   this.components.material.material.depthWrite = false;
+    //   this.components.material.material.needsUpdate = true;
+    // });
 
   </script>
 </body>
